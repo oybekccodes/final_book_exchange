@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ username }}'s Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Welcome, {{ username }}</h1>
+
+    <!-- Posted Books -->
+    <h2>📚 Your Posted Books</h2>
+    {% if posted_books %}
+    <div class="book-grid">
+        {% for book in posted_books %}
+        <div class="book-card">
+            {% if book.image %}
+            <img src="{{ url_for('static', filename=book.image.split('static/')[-1]) }}" alt="{{ book.title }}" width="100">
+            {% endif %}
+            <h4>{{ book.title }}</h4>
+            <p>by {{ book.author }}</p>
+            <p>Status: {{ 'Available' if book.available else 'Borrowed by ' ~ book.get('borrower', '?') }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>You haven’t posted any books.</p>
+    {% endif %}
+
+    <!-- Borrowed Books -->
+    <h2>📖 Your Borrowed Books</h2>
+    {% if borrowed_books %}
+    <ul class="borrowed-list">
+        {% for book in borrowed_books %}
+        <li>
+            <strong>{{ book.title }}</strong> by {{ book.author }}
+            <form action="{{ url_for('return_book', book_id=book._id) }}" method="POST" style="display:inline">
+                <button type="submit" class="return-btn">Return</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>You haven’t borrowed any books.</p>
+    {% endif %}
+
+    <!-- Borrow Requests -->
+    <h2>📥 Borrow Requests</h2>
+    {% if requests %}
+    <ul class="request-list">
+        {% for r in requests %}
+        <li class="request-item">
+            <strong>{{ r.book_title }}</strong> requested by <em>{{ r.borrower }}</em>
+            <form action="{{ url_for('handle_request', request_id=r._id|string, action='accept') }}" method="POST" style="display:inline;">
+                <button type="submit" class="accept-btn">Accept</button>
+            </form>
+            <form action="{{ url_for('handle_request', request_id=r._id|string, action='reject') }}" method="POST" style="display:inline;">
+                <button type="submit" class="reject-btn">Reject</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No pending borrow requests.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('view_books') }}" class="back-link">← Browse Books</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ask Gemini</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='gemini.css') }}">
+</head>
+<body>
+  <div class="chat-container">
+    <h2>Ask Gemini 🤖</h2>
+    <div class="chat-box" id="chat-box"></div>
+
+    <div class="form-row">
+      <input type="text" id="user-input" placeholder="Ask something...">
+      <button onclick="sendPrompt()">Send</button>
+    </div>
+    <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+  </div>
+
+  <script>
+    async function sendPrompt() {
+      const input = document.getElementById('user-input');
+      const chatBox = document.getElementById('chat-box');
+      const prompt = input.value.trim();
+
+      if (!prompt) return;
+
+      // Show user prompt
+      const userMsg = document.createElement('div');
+      userMsg.className = 'message user';
+      userMsg.innerText = prompt;
+      chatBox.appendChild(userMsg);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      input.value = '';
+
+      try {
+        const response = await fetch('/ask_gemini', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt: prompt })
+        });
+
+        const data = await response.json();
+
+        const botMsg = document.createElement('div');
+        botMsg.className = 'message bot';
+        botMsg.innerText = data.response || 'No response';
+        chatBox.appendChild(botMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } catch (err) {
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'message bot';
+        errorMsg.innerText = 'Error contacting Gemini.';
+        chatBox.appendChild(errorMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    }
+
+    // Send on Enter
+    document.getElementById('user-input').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') sendPrompt();
+    });
+  </script>
+</body>
+</html>

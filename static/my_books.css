@@ -1,0 +1,39 @@
+/* my books page styling */
+.book-card {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    width: 280px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.return-button,
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+.edit-link, .chat-link {
+    color: #2196F3;
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.status {
+    font-style: italic;
+    margin-bottom: 10px;
+}

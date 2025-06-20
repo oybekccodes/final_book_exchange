@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Book Exchange</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="login-box">
+    <h2>Create Your Account</h2>
+    <form method="POST">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="username" placeholder="Choose a Username" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Create Password" required>
+      </div>
+      <button type="submit" class="login-btn">Register for Book Exchange</button>
+      <p class="form-footer">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    </form>
+  </div>
+</body>
+</html>

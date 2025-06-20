@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 6px;
+        }
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        textarea {
+            min-height: 120px;
+        }
+        img.current-image {
+            display: block;
+            max-width: 150px;
+            margin-top: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        button {
+            margin-top: 25px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 25px;
+            text-align: center;
+        }
+        a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit Book</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ book.title }}" required>
+
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" value="{{ book.author }}" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{ book.description }}</textarea>
+
+        <label for="image">Replace Book Cover Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        {% if book.image_filename %}
+            <p>Current Image:</p>
+            <img src="{{ url_for('static', filename='uploads/' ~ book.image_filename) }}" alt="Current Book Cover" class="current-image">
+        {% endif %}
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <p><a href="{{ url_for('my_books') }}">← Back to My Books</a></p>
+</body>
+</html>

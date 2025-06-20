@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat about "{{ book.title }}"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+</head>
+<body>
+<div class="container chat-container">
+    <h2>Chat about "<span class="book-title">{{ book.title }}</span>"</h2>
+
+    <div class="chat-box" id="chat-box">
+        {% for msg in messages %}
+        <div class="chat-message {% if msg.sender == session['username'] %}sent{% else %}received{% endif %}">
+            <div class="sender">{{ msg.sender }}</div>
+            <div class="message-text">{{ msg.text }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <form method="POST" class="chat-form">
+        <input name="message" placeholder="Type your message..." required autocomplete="off" class="chat-input">
+        <button type="submit" class="send-button">Send</button>
+    </form>
+
+    <p><a href="{{ url_for('my_books') }}" class="back-link">← Back to My Books</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+
+/* login and register html styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #e8ecf4;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+
+.login-box {
+  background: #ffffff;
+  padding: 4em 3em;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2em;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+
+/* Input fields */
+.input-group {
+  position: relative;
+  margin: 1em 0;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75em 0.75em 0.75em 2.5em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 0.8em;
+  margin-top: 1em;
+  border: none;
+  border-radius: 8px;
+  background: #4b6cb7;
+  background: linear-gradient(to right, #182848, #4b6cb7);
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  opacity: 0.95;
+}
+
+/* Footer */
+.form-footer {
+  margin-top: 1.2em;
+  font-size: 0.9em;
+}
+
+.form-footer a {
+  color: #4b6cb7;
+  text-decoration: none;
+}
+
+/* home.html stlying */
+
+/* Header */
+.mask-custom {
+  background: linear-gradient(to right, #182848, #4b6cb7);
+}
+.navbar .nav-link {
+  color: #ffffff !important;
+}
+.navbar .nav-link:hover {
+  color: #a1eafb !important;
+}
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.mask-custom {
+  background: linear-gradient(to right, #c6ab76, #4b6cb7);
+}
+
+.navbar .nav-link {
+  color: #fff !important;
+}
+
+.navbar .nav-link:hover {
+  color: #a1eafb !important;
+}
+
+.navbar .btn-outline-light:hover {
+  background-color: #fff;
+  color: #182848;
+}
+
+
+.hero {
+  background: url('/static/images/home_bg.jpg') no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+
+
